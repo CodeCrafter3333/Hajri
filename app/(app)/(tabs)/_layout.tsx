@@ -30,12 +30,12 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="saved"
+        name="hours"
         options={{
           tabBarIcon: ({ color }) => (
-            <Feather name="bookmark" size={20} color={color} />
+            <Feather name="clock" size={20} color={color} />
           ),
-          title: "Saved",
+          title: "My hours",
         }}
       />
       <Tabs.Screen
@@ -45,6 +45,15 @@ const TabLayout = () => {
             <Feather name="user" size={20} color={color} />
           ),
           title: "Profile",
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Feather name="settings" size={20} color={color} />
+          ),
+          title: "Settings",
         }}
       />
     </Tabs>

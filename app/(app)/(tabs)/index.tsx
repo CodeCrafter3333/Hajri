@@ -13,8 +13,8 @@ const Home = () => {
     <SafeAreaView className="flex-1 bg-white">
       <StatusBar style="dark" />
       <Header />
-      <Kategori categoryId={categoryId} setCategoryId={setCategoryId} />
-      <MealList categoryId={categoryId} />
+      {/* <Kategori categoryId={categoryId} setCategoryId={setCategoryId} />
+      <MealList categoryId={categoryId} /> */}
     </SafeAreaView>
   );
 };

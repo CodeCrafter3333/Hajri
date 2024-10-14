@@ -44,7 +44,7 @@ const Search = () => {
                 <Feather name="search" size={20} color={"gray"} />
                 <TextInput
                   className="flex-1 font-[poppinsMedium]"
-                  placeholder="Search food name"
+                  placeholder="Search jobs"
                   value={name}
                   onChangeText={(text) => setName(text)}
                   inputMode="search"
@@ -55,7 +55,7 @@ const Search = () => {
           ),
         }}
       />
-      {loading ? (
+      {/* {loading ? (
         <View className="flex-1 bg-white items-center justify-center">
           <ActivityIndicator size={"large"} color={"red"} />
         </View>
@@ -83,7 +83,7 @@ const Search = () => {
             We got nothing here, try another food
           </Text>
         </View>
-      )}
+      )} */}
     </View>
   );
 };

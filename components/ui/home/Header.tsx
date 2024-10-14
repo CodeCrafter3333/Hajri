@@ -15,7 +15,7 @@ const Header = () => {
             Hi, {user?.username?.split(" ")[0]}
           </Text>
           <Text className="font-[poppinsMedium] text-neutral-400">
-            What do you want to cook today?
+          Track your attendance with ease.
           </Text>
         </View>
       </View>
@@ -25,7 +25,7 @@ const Header = () => {
       >
         <Feather name="search" size={20} color={"gray"} />
         <Text className="font-[poppinsMedium] text-neutral-400">
-          Search recipes
+          Search jobs
         </Text>
       </TouchableOpacity>
     </View>
