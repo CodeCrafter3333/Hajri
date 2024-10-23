@@ -19,6 +19,7 @@ const signUp = () => {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -61,6 +62,16 @@ const signUp = () => {
               onChangeText={(text) => setEmail(text)}
             />
           </View>
+            <View className="h-11 flex-row bg-white border border-neutral-300 rounded-xl items-center px-3 mb-3 space-x-2">
+            <Feather name="phone" size={20} color={"gray"} />
+            <TextInput
+              placeholder="Phone Number"
+              keyboardType="phone-pad"
+              className="flex-1 font-[poppinsMedium]"
+              value={phoneNumber}
+              onChangeText={(text) => setPhoneNumber(text)}
+            />
+          </View>
           <View className="flex-row h-12 w-full bg-white border border-neutral-300 rounded-xl items-center px-3 space-x-2">
             <Feather name="lock" size={20} color={"gray"} />
             <TextInput
@@ -101,6 +112,8 @@ const signUp = () => {
               Sign In
             </Link>
           </Text>
+
+
         </View>
       </ScrollView>
     </SafeAreaView>

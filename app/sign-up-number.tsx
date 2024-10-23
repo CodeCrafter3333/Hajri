@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,33 +7,30 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from "@expo/vector-icons";
 import { TextInput } from "react-native";
-import { Link, Redirect, useRouter } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { useAuth } from "@/context/authContext";
 
-const SignIn = () => {
-  const { loading, isAuthenticated, login } = useAuth();
-  const [email, setEmail] = useState("");
+const signUp = () => {
+  const { isAuthenticated, loading, register } = useAuth();
+
+  const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
 
-  const handleLogin = async () => {
-    if (loading) return;
-    if (!email || !password) {
-      Alert.alert("Oops!", "Incomplete Input");
+  const handleDaftar = async () => {
+    if (!username || !phoneNumber || !password) {
+      Alert.alert("Oops!", "Pastikan data lengkap");
       return;
     }
-    await login(email, password);
-  };
-  const handlePhoneSignIn = async () => {
-    // Add your phone sign in logic here
-    // This could involve navigating to a new screen for phone number input,
-    // sending a verification code, etc.
+
+    if (loading) return;
+
+    await register({ username, phoneNumber, password });
   };
 
   if (isAuthenticated) return <Redirect href={"/(app)"} />;
@@ -43,15 +41,24 @@ const SignIn = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="min-h-screen px-5 items-center justify-center">
           <Text className="text-3xl font-[poppinsSemiBold] text-neutral-800 mb-5">
-            Sign In
+            Sign Up with Phone Number
           </Text>
           <View className="h-11 flex-row bg-white border border-neutral-300 rounded-xl items-center px-3 mb-3 space-x-2">
-            <Feather name="mail" size={20} color={"gray"} />
+            <Feather name="user" size={20} color={"gray"} />
             <TextInput
-              placeholder="Email"
+              placeholder="Username"
               className="flex-1 font-[poppinsMedium]"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
+              value={username}
+              onChangeText={(text) => setUsername(text)}
+            />
+          </View>
+          <View className="h-11 flex-row bg-white border border-neutral-300 rounded-xl items-center px-3 mb-3 space-x-2">
+            <Feather name="phone" size={20} color={"gray"} />
+            <TextInput
+              placeholder="Phone Number"
+              className="flex-1 font-[poppinsMedium]"
+              value={phoneNumber}
+              onChangeText={(text) => setPhoneNumber(text)}
             />
           </View>
           <View className="flex-row h-12 w-full bg-white border border-neutral-300 rounded-xl items-center px-3 space-x-2">
@@ -72,44 +79,26 @@ const SignIn = () => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity className="self-end my-3">
-            <Text className="font-[poppins] text-neutral-600">
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
+
           <TouchableOpacity
-            className={`bg-blue-600 h-12 rounded-xl items-center justify-center w-full mb-5`}
-            onPress={handleLogin}
+            className={`bg-blue-600 h-12 rounded-xl items-center justify-center w-full my-5`}
+            onPress={handleDaftar}
           >
             {loading ? (
-              <ActivityIndicator size={30} color={"white"} />
+              <ActivityIndicator color={"white"} size={30} />
             ) : (
               <Text className="text-white font-[poppinsSemiBold] text-base">
-                Sign In
+                Sign Up
               </Text>
             )}
           </TouchableOpacity>
-          <View className="flex-row items-center my-5">
-            <View className="flex-1 h-0.5 bg-neutral-300" />
-            <Text className="mx-2 text-neutral-500">or</Text>
-            <View className="flex-1 h-0.5 bg-neutral-300" />
-          </View>
-
-          <TouchableOpacity
-            className={`bg-green-600 h-12 rounded-xl items-center justify-center w-full mb-5`}
-            
-          >
-            <Link href={"sign-in-number"} className="text-white font-[poppinsSemiBold] text-base">
-              Sign In with Phone Number
-            </Link>
-          </TouchableOpacity>
           <Text className="font-[poppins] text-neutral-800 text-center">
-            Don't have an account yet?{" "}
+            Already have an account?{" "}
             <Link
-              href={"sign-up"}
+              href={"sign-in-number"}
               className="font-[poppinsSemiBold] text-blue-600"
             >
-              Sign Up
+              Sign In
             </Link>
           </Text>
         </View>
@@ -117,4 +106,5 @@ const SignIn = () => {
     </SafeAreaView>
   );
 };
-export default SignIn;
+
+export default signUp;
