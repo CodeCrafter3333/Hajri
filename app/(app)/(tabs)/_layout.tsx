@@ -39,6 +39,15 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
+        name="location"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Feather name="map" size={20} color={color} />
+          ),
+          title: "My Location",
+        }}
+      />
+      <Tabs.Screen
         name="profile"
         options={{
           tabBarIcon: ({ color }) => (
@@ -56,6 +65,7 @@ const TabLayout = () => {
           title: "Settings",
         }}
       />
+
     </Tabs>
   );
 };
